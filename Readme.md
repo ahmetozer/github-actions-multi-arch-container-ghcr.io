@@ -64,7 +64,11 @@ jobs:
           --platform linux/amd64,linux/arm/v7,linux/arm64 .
 ```
 
-## Repository source
+## Link repository
+
+### Label
+
+First method to linking repository with the containers is LABEL option in Dockerfile.
 
 Create a `LABEL` instruction in `Dockerfile` to link package to source.
 
@@ -74,6 +78,22 @@ LABEL org.opencontainers.image.source https://github.com/{Your username}/{your r
 # Example
 
 LABEL org.opencontainers.image.source https://github.com/ahmetozer/github-actions-multi-arch-container-ghcr.io
-
-
 ```
+
+**NOTE**: If your `Dockerfile` has a multi stage, add `LABEL` after latest `FROM` option.
+
+### Github Web
+
+You can also connect repository to container package from github web.
+
+Open `https://github.com/users/{username}/packages/container/package/{repo-name}` on your browser.
+
+End of the page, you will see repository connect setting, clink to 'Connect Repository' button and select your repository.
+
+![](/img/Screenshot_4.jpg)
+
+## Change package visibility
+
+By default, packages are private. To allow public access, change visibility of the package from private to public on https://github.com/users/{username}/packages/container/{repo-name}/settings page.
+
+![](/img/Screenshot_5.jpg)
