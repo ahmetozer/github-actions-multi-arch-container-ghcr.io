@@ -20,18 +20,10 @@ jobs:
         id: buildx
         uses: docker/setup-buildx-action@v1
 
-      - name: Build container image
-        run: |
-          IMAGE_ID=$(echo ghcr.io/${{ github.repository }} | tr '[A-Z]' '[a-z]')
-
-          docker buildx build \
-          --tag $IMAGE_ID \
-          --platform linux/amd64,linux/arm/v7,linux/arm64 .
-
       - name: Log-in to ghcr.io
         run: echo "${{ secrets.DOCKER_LOGIN }}" | docker login https://ghcr.io -u ${{ github.actor }} --password-stdin
 
-      - name: Push container image to ghcr.io
+      - name: Build and push container image
         run: |
           IMAGE_ID=$(echo ghcr.io/${{ github.repository }} | tr '[A-Z]' '[a-z]')
 
@@ -45,5 +37,7 @@ jobs:
           [ "$VERSION" == "master" ] && VERSION=latest
           echo IMAGE_ID=$IMAGE_ID
           echo VERSION=$VERSION
-          docker tag $IMAGE_ID $IMAGE_ID:$VERSION
-          docker push $IMAGE_ID:$VERSION
+
+          docker buildx build --push \
+          --tag $IMAGE_ID:$VERSION \
+          --platform linux/amd64,linux/arm/v7,linux/arm64 .
