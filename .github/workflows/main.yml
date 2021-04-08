@@ -25,7 +25,7 @@ jobs:
           IMAGE_ID=$(echo ghcr.io/${{ github.repository }} | tr '[A-Z]' '[a-z]')
 
           docker buildx build \
-          --tag $IMAGE_ID\
+          --tag $IMAGE_ID \
           --platform linux/amd64,linux/arm/v7,linux/arm64 .
 
       - name: Log-in to ghcr.io
