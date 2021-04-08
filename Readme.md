@@ -63,3 +63,17 @@ jobs:
           --tag $IMAGE_ID:$VERSION \
           --platform linux/amd64,linux/arm/v7,linux/arm64 .
 ```
+
+## Repository source
+
+Create a `LABEL` instruction in `Dockerfile` to link package to source.
+
+```Dockerfile
+LABEL org.opencontainers.image.source https://github.com/{Your username}/{your repository name}
+
+# Example
+
+LABEL org.opencontainers.image.source https://github.com/ahmetozer/github-actions-multi-arch-container-ghcr.io
+
+
+```
