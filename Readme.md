@@ -73,11 +73,11 @@ First method to linking repository with the containers is LABEL option in Docker
 Create a `LABEL` instruction in `Dockerfile` to link package to source.
 
 ```Dockerfile
-LABEL org.opencontainers.image.source https://github.com/{Your username}/{your repository name}
+LABEL org.opencontainers.image.source="https://github.com/{Your username}/{your repository name}"
 
 # Example
 
-LABEL org.opencontainers.image.source https://github.com/ahmetozer/github-actions-multi-arch-container-ghcr.io
+LABEL org.opencontainers.image.source="https://github.com/ahmetozer/github-actions-multi-arch-container-ghcr.io"
 ```
 
 **NOTE**: If your `Dockerfile` has a multi stage, add `LABEL` after latest `FROM` option.
