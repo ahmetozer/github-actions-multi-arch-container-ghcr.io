@@ -2,6 +2,7 @@
 
 This is an example repository to demonstrate Multi-Platform/Multi-arch container builds in GitHub actions to ghcr.io registry.
 
+<!--
 ## Create a token for login
 
 For publishing containers into your account, the system requires a token to the authentication.
@@ -13,6 +14,7 @@ For publishing containers into your account, the system requires a token to the 
     ![](/img/Screenshot_2.jpg)
 - Open repository settings, click actions option which is under Secrets scope and create New repository secret.
     ![](/img/Screenshot_3.jpg)
+-->
 
 ## Create a workflow
 
@@ -45,7 +47,7 @@ jobs:
         uses: docker/setup-buildx-action@v1
 
       - name: Log-in to ghcr.io
-        run: echo "${{ secrets.GHCR_LOGIN }}" | docker login https://ghcr.io -u ${{ github.actor }} --password-stdin
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login https://ghcr.io -u ${{ github.actor }} --password-stdin
 
       - name: Build and push container image
         run: |
