@@ -18,7 +18,7 @@ For publishing containers into your account, the system requires a token to the 
 
 ## Create a workflow
 
-Create main.yml under the ".github/workflows" directory.
+Create `.github/workflows/main.yml` file.
 
 Fill and change yml file with your properties.  
 In this example, github actions is triggered on master branch publish and builds container image with linux/amd64,linux/arm/v7,linux/arm64 platforms.
@@ -29,6 +29,12 @@ name: Build and publish container
 on:
   push:
     branches: [master]
+  workflow_dispatch:
+    inputs:
+      reason:
+        description: 'Why ?'
+        required: false
+        default: ''
 
 jobs:
   ghr_push:
